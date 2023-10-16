@@ -1,15 +1,8 @@
-local QBCore = exports["qb-core"]:GetCoreObject()
 local ServerObjects = {}
 
-QBCore.Commands.Add('object', 'Makes you add objects', {}, true, function(source)
-    local source = source
-    local Player = QBCore.Functions.GetPlayer(source)
-    local permission = 'god'
-    QBCore.Functions.AddPermission(Player.PlayerData.source, permission)
-    if QBCore.Functions.HasPermission(source, 'god') then
-        TriggerClientEvent('ps-objectspawner:client:registerobjectcommand', source, permission)
-    end
-end, 'god')
+ESX.RegisterCommand("object", 'admin', function(xPlayer)
+    xPlayer.triggerEvent("ps-objectspawner:client:registerobjectcommand", "god")
+end, false)
 
 RegisterNetEvent("ps-objectspawner:server:CreateNewObject", function(model, coords, objecttype, options, objectname)
     local source = source
@@ -41,13 +34,14 @@ CreateThread(function()
     end
 end)
 
-QBCore.Functions.CreateCallback("ps-objectspawner:server:RequestObjects", function(source, cb)
+ESX.RegisterServerCallback("ps-objectspawner:server:RequestObjects", function(source, cb)
     cb(ServerObjects)
 end)
 
 RegisterNetEvent("ps-objectspawner:server:DeleteObject", function(objectid)
     local source = source
-    local hasperms = QBCore.Functions.HasPermission(source, 'god')
+    local xPlayer = ESX.GetPlayerFromId(source)
+    local hasperms = xPlayer.group == "admin"
     if hasperms then
         if objectid > 0 then
             local data = MySQL.query.await('DELETE FROM objects WHERE id = ?', {objectid})

@@ -1,3 +1,4 @@
+(Converted to ESX by Mycroft)
 ![Project Sloth GitHub Project PS-OBJECTSPAWNER Banner](https://user-images.githubusercontent.com/91661118/176777941-9f3dfa83-0da6-47e4-8cc9-5add55e198bc.png)
 
 ### ps-objectspawner
@@ -6,8 +7,8 @@ A well thought out simplistic user-friendly experience for spawning objects arou
 ![Project Sloth Buttons 2](https://user-images.githubusercontent.com/91661118/176778087-bd5285aa-09ac-4c5f-83d8-53687fab84a9.png)
 
 ### Dependencies:
-* [qb-core](https://github.com/qbcore-framework/qb-core)
-* [qb-target](https://github.com/BerkieBb/qb-target)
+* [ESX Legacy](https://github.com/esx-framework/esx_core)
+* [OX Target](https://github.com/overextended/ox_target)
 * [oxmysql](https://github.com/overextended/oxmysql)
 
 ### ⚠️Important:

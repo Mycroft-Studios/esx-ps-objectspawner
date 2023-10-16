@@ -1,4 +1,3 @@
-local QBCore = exports['qb-core']:GetCoreObject()
 local ObjectList = {} -- Object, Model, Coords, IsRendered, SpawnRange
 
 local PlacingObject, LoadedObjects = false, false
@@ -53,7 +52,7 @@ end
 
 AddEventHandler('onResourceStart', function(resourceName)
     if GetCurrentResourceName() == resourceName then
-        QBCore.Functions.TriggerCallback('ps-objectspawner:server:RequestObjects', function(incObjectList)
+        ESX.TriggerServerCallback('ps-objectspawner:server:RequestObjects', function(incObjectList)
             ObjectList = incObjectList
         end)
     end
@@ -78,8 +77,8 @@ RegisterNetEvent('ps-objectspawner:client:registerobjectcommand', function(perms
     end
 end)
 
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
-    QBCore.Functions.TriggerCallback('ps-objectspawner:server:RequestObjects', function(incObjectList)
+RegisterNetEvent('esx:playerLoaded', function()
+    ESX.TriggerServerCallback('ps-objectspawner:server:RequestObjects', function(incObjectList)
         ObjectList = incObjectList
     end)
 end)
